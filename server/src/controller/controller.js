@@ -224,7 +224,8 @@ const logOut = async (req, res) => {
 const countUser = async(req ,res) => {
     const user = await db.User.count()
     const salary = await db.User.sum('salary')
-    return res.json({ employee : user , salary : salary})
+    const adminn =  await db.Admin.count()
+    return res.json({ employee : user , salary : salary , admin : adminn} )
 }
 const getUser = async (req, res) => {
     const id = req.params.id
@@ -237,6 +238,13 @@ const getUser = async (req, res) => {
     else {
         return res.send('err')
     }
+}
+const getAdmin = async (req, res) => {
+    const idA = req.params.id
+    const ad = await db.Admin.findOne({
+        where : {id : idA}
+    })
+    return res.json(ad)
 }
  
 
@@ -256,5 +264,6 @@ module.exports = {
     verifyEmployee,
     getUser,
     createAdmin,
-    testad
+    testad,
+    getAdmin
 }

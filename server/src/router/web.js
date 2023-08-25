@@ -31,6 +31,7 @@ let initWebRoutes = (app) => {
   router.get('/countUser', controller.countUser)
   router.post('/loginemployee', controller.handleLoginEmployee)
   router.get('/getuser/:id', controller.getUser)
+  router.get('/getadmin/:id', controller.getAdmin)
   
     return app.use('/' ,router )
 }
